@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Look Up - Kick Streamer Tools by Streamscape</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/theme-button.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <!-- Integrated Header Section -->
+    <div class="integrated-header">
+        <div class="header-container">
+            <div class="logos-container">
+                <div class="logo">
+                    <img src="assets/kickplusLogo.png" alt="Kick Plus" class="logo-image">
+                </div>
+                <div class="header-navigation">
+                    <a href="index.html" class="nav-button active">Home</a>
+                    <a href="html/lookup.html" class="nav-button">THE LOOK UP</a>
+                    <a href="html/settings.html" class="nav-button">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="app-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Welcome to Kick Plus</h1>
+            <p class="hero-subtitle">Professional Kick.com streamer analysis tools for content creators and viewers.</p>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features-grid">
+            <div class="feature-card lookup-card">
+                <div class="lookup-logo-container">
+                    <img src="assets/lookup-logo2.png" alt="The Look Up" class="lookup-card-logo">
+                </div>
+                <h3 class="feature-title">The Look Up</h3>
+                <p class="feature-description">
+                    Your comprehensive Kick.com analysis tool. Get detailed streamer information, 
+                    viewer insights, see if they are live, and much more. Explore the Kick.com 
+                    ecosystem with professional-grade tools designed for content creators and viewers.
+                </p>
+                <a href="html/lookup.html" class="cta-button">Launch Tool</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Streamscape LLC. All rights reserved. The Look Up and Kick Plus are owned by Streamscape LLC.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for theme initialization only -->
+    <script>
+        // Theme initialization (themes are managed in settings page)
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('lookupTheme') || 'green';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Listen for theme changes from other tabs/windows
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'lookupThemeChange') {
+                const currentTheme = localStorage.getItem('lookupTheme') || 'green';
+                document.body.setAttribute('data-theme', currentTheme);
+            }
+        });
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+    </script>
+</body>
+</html>
