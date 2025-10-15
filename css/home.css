@@ -34,6 +34,19 @@
     margin-right: auto;
 }
 
+@media (min-width: 900px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 1100px;
+    }
+}
+
+@media (min-width: 700px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .feature-card {
     background: var(--card-bg);
     border: 2px solid var(--primary-color);
@@ -62,6 +75,11 @@
     max-height: 120px;
     height: auto;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    max-width: 80vw;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feature-icon {
@@ -200,5 +218,11 @@
     
     .lookup-card-logo {
         max-height: 100px;
+        max-width: 80vw;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
