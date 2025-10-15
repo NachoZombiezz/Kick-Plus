@@ -18,11 +18,17 @@
                 <div class="logo">
                     <img src="assets/kickplusLogo.png" alt="Kick Plus" class="logo-image">
                 </div>
-                <div class="header-navigation">
+                <!-- Hamburger menu for mobile -->
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation" tabindex="0">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <nav class="header-navigation" id="header-navigation">
                     <a href="index.html" class="nav-button active">Home</a>
                     <a href="html/lookup.html" class="nav-button">THE LOOK UP</a>
                     <a href="html/settings.html" class="nav-button">Settings</a>
-                </div>
+                </nav>
             </div>
         </div>
     </div>
@@ -58,8 +64,15 @@
             <p>&copy; 2025 Streamscape LLC. All rights reserved. The Look Up and Kick Plus are owned by Streamscape LLC.</p>
         </div>
     </footer>
-
-    <!-- JavaScript for theme initialization only -->
+    <!-- Fullscreen mobile menu overlay (moved to end of body for stacking) -->
+    <div id="nav-overlay" class="nav-overlay">
+        <nav class="nav-overlay-menu">
+            <a href="index.html" class="nav-button active">Home</a>
+            <a href="html/lookup.html" class="nav-button">THE LOOK UP</a>
+            <a href="html/settings.html" class="nav-button">Settings</a>
+        </nav>
+        <button class="close-menu" id="close-menu" aria-label="Close navigation">&times;</button>
+    </div>
     <script>
         // Theme initialization (themes are managed in settings page)
         function initializeTheme() {
@@ -77,6 +90,25 @@
 
         // Initialize theme on page load
         document.addEventListener('DOMContentLoaded', initializeTheme);
+
+        // Hamburger menu toggle for fullscreen overlay
+        const hamburger = document.getElementById('hamburger-menu');
+        const navOverlay = document.getElementById('nav-overlay');
+        const closeMenu = document.getElementById('close-menu');
+        hamburger.addEventListener('click', function() {
+            navOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+        closeMenu.addEventListener('click', function() {
+            navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        navOverlay.addEventListener('click', function(e) {
+            if (e.target === navOverlay) {
+                navOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 </html>
