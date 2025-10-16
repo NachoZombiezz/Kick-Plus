@@ -159,6 +159,49 @@
     opacity: 0.9;
 }
 
+/* Visit counter badge (appended) */
+#visit-counter-global {
+    display: inline-block;
+    background: var(--primary-color, #00ff88);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    text-align: center;
+    min-width: 190px;
+    margin: 0 auto 1rem auto;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: subtle-pulse 6s ease-in-out infinite;
+}
+#visit-counter-global:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+}
+#visit-counter-global .vc-count { font-size: 1.5rem; display:block; }
+#visit-counter-global .vc-label { font-size: 0.85rem; opacity: 0.95; display:block; }
+
+@keyframes subtle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    #visit-counter-global {
+        width: calc(100% - 4rem);
+        box-sizing: border-box;
+    }
+}
+
+/* Praise text under the counter */
+.visit-praise {
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.95;
+    margin-top: 0.25rem;
+}
+
 .header-navigation {
     display: flex;
     align-items: center;

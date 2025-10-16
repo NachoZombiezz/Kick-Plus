@@ -41,8 +41,15 @@
             <p class="hero-subtitle">Professional Kick.com streamer analysis tools for content creators and viewers.</p>
         </section>
 
-        <!-- Features Grid -->
-        <section class="features-grid">
+        <!-- Visit Counter (global via countapi.xyz) -->
+        <div id="visit-counter-global" aria-live="polite" role="status">
+            <span class="vc-count">…</span>
+            <span class="vc-label">Total visits</span>
+        </div>
+        <div id="visit-praise" class="visit-praise" style="text-align:center;margin-bottom:1rem;color:var(--text-color);opacity:0.95;">Join the growing community!</div>
+
+    <!-- Features Grid -->
+    <section class="features-grid">
             <div class="feature-card lookup-card">
                 <div class="lookup-logo-container">
                     <img src="assets/lookup-logo2.png" alt="The Look Up" class="lookup-card-logo">
@@ -116,6 +123,44 @@
                 document.body.style.overflow = '';
             }
         });
+    </script>
+    <script>
+        // Global visit counter using countapi.xyz (increments on load)
+        (function(){
+            const ns = 'kickplus';
+            const key = 'homepage-visits';
+            const el = document.getElementById('visit-counter-global');
+            if (!el) return;
+            const countEl = el.querySelector('.vc-count');
+            const labelEl = el.querySelector('.vc-label');
+            const praiseEl = document.getElementById('visit-praise');
+            // initial state
+            if (countEl) countEl.textContent = '…';
+            if (labelEl) labelEl.textContent = 'Loading...';
+
+            const url = `https://api.countapi.xyz/hit/${encodeURIComponent(ns)}/${encodeURIComponent(key)}`;
+            fetch(url)
+                .then(r => r.json())
+                .then(data => {
+                    if (data && typeof data.value !== 'undefined') {
+                        const n = Number(data.value);
+                        const formatted = n.toLocaleString();
+                        if (countEl) countEl.textContent = formatted;
+                        if (labelEl) labelEl.textContent = 'Total visits';
+                        if (praiseEl) praiseEl.textContent = `Join ${formatted} visitors who trust Kick Plus!`;
+                        el.title = `Total visits: ${formatted}`;
+                    } else {
+                        if (countEl) countEl.textContent = '—';
+                        if (labelEl) labelEl.textContent = 'Error';
+                        if (praiseEl) praiseEl.textContent = 'Be among the first to try Kick Plus!';
+                    }
+                })
+                .catch(() => {
+                    if (countEl) countEl.textContent = '—';
+                    if (labelEl) labelEl.textContent = 'Offline';
+                    if (praiseEl) praiseEl.textContent = 'Visit count currently unavailable';
+                });
+        })();
     </script>
 </body>
 </html>
