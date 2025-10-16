@@ -125,19 +125,43 @@
         });
     </script>
     <script>
-        // Global visit counter using countapi.xyz (increments on load)
+        // Visit counter: use localStorage for file/localhost previews, otherwise use countapi.xyz
         (function(){
-            const ns = 'kickplus';
-            const key = 'homepage-visits';
             const el = document.getElementById('visit-counter-global');
             if (!el) return;
             const countEl = el.querySelector('.vc-count');
             const labelEl = el.querySelector('.vc-label');
             const praiseEl = document.getElementById('visit-praise');
-            // initial state
             if (countEl) countEl.textContent = '…';
             if (labelEl) labelEl.textContent = 'Loading...';
 
+            function setOffline() {
+                if (countEl) countEl.textContent = '—';
+                if (labelEl) labelEl.textContent = 'Offline';
+                if (praiseEl) praiseEl.textContent = 'Visit count currently unavailable';
+            }
+
+            const isLocal = (location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+            if (isLocal) {
+                // use per-browser localStorage counter for previews
+                try {
+                    const keyLS = 'kickplus_local_visits';
+                    let v = parseInt(localStorage.getItem(keyLS) || '0', 10);
+                    v = v + 1;
+                    localStorage.setItem(keyLS, String(v));
+                    const formatted = v.toLocaleString();
+                    if (countEl) countEl.textContent = formatted;
+                    if (labelEl) labelEl.textContent = 'This browser';
+                    if (praiseEl) praiseEl.textContent = `You've joined ${formatted} local visits — preview mode.`;
+                } catch (e) {
+                    setOffline();
+                }
+                return;
+            }
+
+            // Production / hosted environment: use countapi
+            const ns = 'kickplus';
+            const key = 'homepage-visits';
             const url = `https://api.countapi.xyz/hit/${encodeURIComponent(ns)}/${encodeURIComponent(key)}`;
             fetch(url)
                 .then(r => r.json())
@@ -150,15 +174,11 @@
                         if (praiseEl) praiseEl.textContent = `Join ${formatted} visitors who trust Kick Plus!`;
                         el.title = `Total visits: ${formatted}`;
                     } else {
-                        if (countEl) countEl.textContent = '—';
-                        if (labelEl) labelEl.textContent = 'Error';
-                        if (praiseEl) praiseEl.textContent = 'Be among the first to try Kick Plus!';
+                        setOffline();
                     }
                 })
                 .catch(() => {
-                    if (countEl) countEl.textContent = '—';
-                    if (labelEl) labelEl.textContent = 'Offline';
-                    if (praiseEl) praiseEl.textContent = 'Visit count currently unavailable';
+                    setOffline();
                 });
         })();
     </script>
