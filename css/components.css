@@ -1,0 +1,115 @@
+/* Component-specific styles for The Look Up */
+
+/* Badge image sizing */
+.viewer-badges img {
+    height: 1em !important;
+    width: 1em !important;
+}
+
+/* Social link tooltips */
+.streamer-socials a {
+    position: relative;
+    text-decoration: none;
+}
+
+.streamer-socials a::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.streamer-socials a:hover::before {
+    opacity: 1;
+}
+
+/* Error states */
+.error-message {
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 500;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Button loading state */
+.search-btn.loading {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Follow status indicators */
+.follow-status.following {
+    color: #00ff88;
+    font-weight: 600;
+}
+
+.follow-status.not-following {
+    color: #ff4444;
+    font-weight: 600;
+}
+
+/* Subscription status */
+.sub-status.subscribed {
+    color: #ff6b35;
+    font-weight: 600;
+}
+
+.sub-status.not-subscribed {
+    color: #888;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .streamer-socials {
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+    
+    .viewer-badges {
+        font-size: 0.9em;
+    }
+    
+    .card-bottom {
+        padding: 30px 10px 10px 10px;
+    }
+}
+
+/* Live Stream Toggle Button text centering */
+#toggle-live-stream {
+    text-align: center;
+    margin: 0.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Print styles */
+@media print {
+    .theme-dropdown {
+        display: none;
+    }
+    
+    .streamer-socials {
+        display: none;
+    }
+}
