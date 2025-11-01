@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel/Banner Generator - Kick Plus</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="panel-generator.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../../index.html" class="top-bar-link">Home</a>
+            <a href="../../Free-Tools/index.html" class="top-bar-link">Free Tools</a>
+            <a href="../../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <a href="../../Free-Tools/index.html" class="back-btn">← Back</a>
+                <div class="generator-header fade-in">
+                    <img src="../../assets/Tool Icons/PanelMagic.png" alt="Panel Magic" class="generator-logo">
+                </div>
+
+                <!-- Control Panel -->
+                <div class="control-panel fade-in">
+                    <h3>Design Settings</h3>
+                    
+                    <!-- Size Preset Selection -->
+                    <div class="preset-section">
+                        <h4>Choose Size</h4>
+                        <div class="preset-buttons">
+                            <button type="button" class="preset-btn active" data-width="320" data-height="100">Panel (320x100)</button>
+                            <button type="button" class="preset-btn" data-width="1920" data-height="480">Banner (1920x480)</button>
+                            <button type="button" class="preset-btn" data-width="1200" data-height="480">Header (1200x480)</button>
+                            <button type="button" class="preset-btn" data-width="600" data-height="200">Small Panel (600x200)</button>
+                        </div>
+                        <div class="custom-size">
+                            <label>Custom Size:</label>
+                            <input type="number" id="customWidth" placeholder="Width" min="100" max="3840" value="320">
+                            <span>x</span>
+                            <input type="number" id="customHeight" placeholder="Height" min="100" max="2160" value="100">
+                            <button type="button" id="applyCustomSize" class="apply-btn">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Background Settings -->
+                    <div class="settings-section">
+                        <h4>Background</h4>
+                        <div class="background-controls">
+                            <div class="control-group">
+                                <label for="bgType">Type:</label>
+                                <select id="bgType">
+                                    <option value="solid">Solid Color</option>
+                                    <option value="gradient">Gradient</option>
+                                    <option value="image">Image Upload</option>
+                                </select>
+                            </div>
+                            <div class="control-group" id="solidColorGroup">
+                                <label for="bgColor1">Color:</label>
+                                <input type="color" id="bgColor1" value="#1a1a2e">
+                            </div>
+                            <div class="control-group" id="gradientGroup" style="display: none;">
+                                <label for="bgColor2">Color 2:</label>
+                                <input type="color" id="bgColor2" value="#6366f1">
+                                <label for="gradientAngle">Angle:</label>
+                                <input type="range" id="gradientAngle" min="0" max="360" value="135">
+                                <span id="angleValue">135°</span>
+                            </div>
+                            <div class="control-group" id="imageGroup" style="display: none;">
+                                <label for="bgImage">Upload:</label>
+                                <input type="file" id="bgImage" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Settings -->
+                    <div class="settings-section">
+                        <h4>Text Content</h4>
+                        <div class="text-controls">
+                            <div class="control-group full-width">
+                                <label for="mainText">Main Text:</label>
+                                <input type="text" id="mainText" placeholder="Enter your text..." maxlength="100">
+                            </div>
+                            <div class="control-group full-width">
+                                <label for="subText">Subtitle:</label>
+                                <input type="text" id="subText" placeholder="Optional subtitle..." maxlength="100">
+                            </div>
+                            <div class="control-group">
+                                <label for="textColor">Text Color:</label>
+                                <input type="color" id="textColor" value="#ffffff">
+                            </div>
+                            <div class="control-group">
+                                <label for="fontSize">Font Size:</label>
+                                <input type="range" id="fontSize" min="12" max="120" value="32">
+                                <span id="fontSizeValue">32px</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="textAlign">Alignment:</label>
+                                <select id="textAlign">
+                                    <option value="left">Left</option>
+                                    <option value="center" selected>Center</option>
+                                    <option value="right">Right</option>
+                                </select>
+                            </div>
+                            <div class="control-group full-width">
+                                <label for="fontSearch">Font Family:</label>
+                                <div class="font-row">
+                                    <input type="text" id="fontSearch" placeholder="Search fonts... (e.g., Inter, Roboto)">
+                                    <div id="fontDropdown"></div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="textShadow" checked>
+                                    Text Shadow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Border & Effects -->
+                    <div class="settings-section">
+                        <h4>Border & Effects</h4>
+                        <div class="effect-controls">
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="borderEnabled">
+                                    Enable Border
+                                </label>
+                            </div>
+                            <div class="control-group" id="borderControls" style="display: none;">
+                                <label for="borderColor">Border Color:</label>
+                                <input type="color" id="borderColor" value="#6366f1">
+                                <label for="borderWidth">Width:</label>
+                                <input type="range" id="borderWidth" min="1" max="20" value="4">
+                                <span id="borderWidthValue">4px</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="borderRadius">Rounded Corners:</label>
+                                <input type="range" id="borderRadius" min="0" max="50" value="8">
+                                <span id="radiusValue">8px</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Export Section -->
+                    <div class="export-section">
+                        <h4>Export Your Design</h4>
+                        <button type="button" id="downloadBtn" class="download-btn">Download PNG</button>
+                    </div>
+                </div>
+
+                <!-- Live Preview -->
+                <div class="preview-section fade-in">
+                    <h3>Live Preview</h3>
+                    <div class="preview-container">
+                        <canvas id="previewCanvas" width="320" height="100"></canvas>
+                    </div>
+                    <p class="preview-info">Current size: <span id="currentSize">320 x 100</span> pixels</p>
+                </div>
+
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="panel-generator.js"></script>
+</body>
+</html>

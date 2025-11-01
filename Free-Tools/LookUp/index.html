@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Look Up - Kick Plus</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="streamer-viewer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../../index.html" class="top-bar-link">Home</a>
+            <a href="../index.html" class="top-bar-link">Free Tools</a>
+            <a href="../../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <a href="../index.html" class="back-btn">← Back</a>
+                <div class="lookup-header fade-in">
+                    <img src="../../assets/Tool Icons/LookUp.png" alt="The Look Up" class="lookup-logo">
+                </div>
+                <div class="notice-section">
+                    <div class="notice-content">
+                        <p><strong>Notice:</strong> This tool is designed to look up information for Kick.com channels only and to see if they are live.</p>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="kickname">Streamer Username:</label>
+                            <input type="text" id="kickname" placeholder="Enter streamer username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="viewername">Viewer Username (Optional):</label>
+                            <input type="text" id="viewername" placeholder="Enter viewer username">
+                        </div>
+                    </div>
+                    <div class="button-row">
+                        <button id="get-streamer" class="search-btn">Search</button>
+                    </div>
+                </div>
+                <!-- Results Container -->
+                <div class="results-container">
+                    <div class="results-buttons-container">
+                        <button class="results-close-btn" aria-label="Close results">Close</button>
+                    </div>
+                    <div class="look-up-module">
+                        <div class="cards-container">
+                            <div class="streamer-card-module">
+                                <div class="card-top">
+                                    <h3 class="card-title">Streamer</h3>
+                                </div>
+                                <div class="card-bottom">
+                                    <div class="streamer-container">
+                                        <div class="card-pfp">
+                                            <img id="pfp-kick" src="assets/login_pfp.png" alt="Streamer Profile Picture">
+                                        </div>
+                                        <div class="name-section">
+                                            <span id="streamer-name">Username</span>
+                                            <img id="streamer-staff" src="assets/staff.png" alt="Staff" style="display: none;">
+                                            <img id="streamer-verified" src="assets/verified.png" alt="Verified" style="display: none;">
+                                        </div>
+                                    </div>
+                                    <div id="streamer-creation-date">Jan 01, 2023</div>
+                                    <div id="streamer-age">0y 0m 0d</div>
+                                    <div id="streamer-follower-count">0</div>
+                                    <div id="streamer-live-status">Offline</div>
+                                    <div id="streamer-bio" style="display: none;">Bio content</div>
+                                    <button id="toggle-live-stream" class="dev-info-toggle-btn" style="display: none;">
+                                        <span class="toggle-text">Show Live Stream</span>
+                                    </button>
+                                    <div class="streamer-socials">
+                                        <a id="streamer-twitter" href="#" target="_blank">
+                                            <img src="assets/twitterLogo.png" alt="Twitter">
+                                        </a>
+                                        <a id="streamer-instagram" href="#" target="_blank">
+                                            <img src="assets/instagramLogo.png" alt="Instagram">
+                                        </a>
+                                        <a id="streamer-youtube" href="#" target="_blank">
+                                            <img src="assets/youtubeLogo.png" alt="YouTube">
+                                        </a>
+                                        <a id="streamer-discord" href="#" target="_blank">
+                                            <img src="assets/discordLogo.png" alt="Discord">
+                                        </a>
+                                        <a id="streamer-facebook" href="#" target="_blank">
+                                            <img src="assets/facebookLogo.png" alt="Facebook">
+                                        </a>
+                                        <a id="streamer-tiktok" href="#" target="_blank">
+                                            <img src="assets/tiktokLogo.png" alt="TikTok">
+                                        </a>
+                                    </div>
+                                    <button id="dev-info-toggle" class="dev-info-toggle-btn">Show Developer Info</button>
+                                    <div id="dev-info-container" class="dev-info-container" style="display: none;">
+                                        <div id="streamer-id">ID</div>
+                                        <div id="streamer-user-id">User ID</div>
+                                        <div id="streamer-chatroom-id">Chatroom ID</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="module-separator">
+                                <img src="assets/connection.png" alt="Connection" class="separator-image">
+                            </div>
+                            <div class="viewer-card-module">
+                                <div class="card-top">
+                                    <h3 class="card-title">Viewer</h3>
+                                </div>
+                                <div class="card-bottom">
+                                    <div class="viewer-name-container">
+                                        <div class="card-pfp">
+                                            <img id="pfp-kick-viewer" src="assets/login_pfp.png" alt="Viewer Profile Picture">
+                                        </div>
+                                        <div class="name-section">
+                                            <span id="viewer-name">Viewer Username</span>
+                                            <img id="viewer-staff" src="assets/staff.png" alt="Staff" style="display: none;">
+                                            <img id="viewer-verified" src="assets/verified.png" alt="Verified" style="display: none;">
+                                        </div>
+                                    </div>
+                                    <div id="viewer-creation-date">Jan 01, 2023</div>
+                                    <div id="viewer-age">0y 0m 0d</div>
+                                    <div id="viewer-follows">No</div>
+                                    <div id="subscriber">No</div>
+                                    <div id="sub-length">0 Months</div>
+                                    <div id="gifted-subs">0 Subs</div>
+                                    <div id="banned">No</div>
+                                    <div class="viewer-badges">
+                                        <span class="badges-text">Badges:</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="live-stream-section" class="live-stream-section" style="display: none;">
+                        <div class="card-top">
+                            <h3 class="card-title">🔴 Live Stream</h3>
+                        </div>
+                        <div class="card-bottom">
+                            <div class="stream-info">
+                                <h4 id="stream-title">Stream Title</h4>
+                                <div class="stream-details">
+                                    <div id="stream-viewers">0 viewers</div>
+                                    <div id="stream-duration">0h 0m</div>
+                                </div>
+                            </div>
+                            <div class="stream-embed-container">
+                                <iframe 
+                                    id="stream-embed"
+                                    src=""
+                                    frameborder="0"
+                                    allowfullscreen
+                                    scrolling="no"
+                                    height="315"
+                                    width="100%">
+                                </iframe>
+                            </div>
+                            <div class="stream-actions">
+                                <button id="watch-on-kick" class="watch-btn">
+                                    Watch on Kick.com
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="look-up.js"></script>
+</body>
+</html>

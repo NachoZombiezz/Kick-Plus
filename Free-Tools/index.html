@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Tools - Kick Plus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../index.html" class="top-bar-link">Home</a>
+            <a href="index.html" class="top-bar-link">Free Tools</a>
+            <a href="../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <div class="hero-section fade-in">
+                    <h1>Free Tools</h1>
+                    <p>Discover powerful utilities to enhance your stream and grow your social media presence.</p>
+                </div>
+                <input type="text" id="toolFilter" placeholder="🔍 Search tools..." style="margin: 24px 0; padding: 12px 20px; width: 100%; max-width: 400px; border-radius: var(--radius-md); border: 2px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); font-size: 1rem;">
+                <div class="tools-grid">
+                    <div class="tool-card fade-in">
+                        <a href="Social Rotator/index.html" class="tool-card-link">
+                            <img src="../assets/Tool Icons/SocialRotator.png" alt="Rotator Tool Icon" class="tool-icon">
+                            <p class="tool-description">Cycle through your social media handles on stream</p>
+                        </a>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <a href="LookUp/index.html" class="tool-card-link">
+                            <img src="../assets/Tool Icons/LookUp.png" alt="Look Up Tool Icon" class="tool-icon">
+                            <p class="tool-description">Search and view Kick streamer and viewer information</p>
+                        </a>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <a href="SpinWheel/index.html" class="tool-card-link">
+                            <img src="../assets/Tool Icons/SpinWheel.png" alt="Spin Wheel Tool Icon" class="tool-icon">
+                            <p class="tool-description">Create custom spin the wheels for games and giveaways</p>
+                        </a>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <a href="CountdownTimer/index.html" class="tool-card-link">
+                            <img src="../assets/Tool Icons/CountDown.png" alt="Countdown Timer Tool Icon" class="tool-icon">
+                            <p class="tool-description">Create countdown timers for starting soon screens</p>
+                        </a>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <a href="PanelGenerator/index.html" class="tool-card-link">
+                            <img src="../assets/Tool Icons/PanelMagic.png" alt="Panel Generator Tool Icon" class="tool-icon">
+                            <p class="tool-description">Design custom panels and banners for your profile</p>
+                        </a>
+                    </div>
+                    <div class="tool-card fade-in disabled-card">
+                        <div class="tool-card-link">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                            <img src="../assets/Tool Icons/UnifiedChat.png" alt="Unified Chat Tool Icon" class="tool-icon">
+                            <p class="tool-description">Combine Twitch and Kick chat in one unified view</p>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in disabled-card">
+                        <div class="tool-card-link">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                            <img src="../assets/Tool Icons/Hype.png" alt="Hype Tool Icon" class="tool-icon">
+                            <p class="tool-description">Create hype moments with animated overlays for your stream</p>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in disabled-card">
+                        <div class="tool-card-link">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                            <img src="../assets/Tool Icons/Milestones.png" alt="Milestones Tool Icon" class="tool-icon">
+                            <p class="tool-description">Track and celebrate stream milestones and achievements</p>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in disabled-card">
+                        <div class="tool-card-link">
+                            <span class="coming-soon-badge">Coming Soon</span>
+                            <img src="../assets/Tool Icons/TextToSpeech.png" alt="Text To Speech Tool Icon" class="tool-icon">
+                            <p class="tool-description">Convert chat messages and donations to speech</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+    const filterInput = document.getElementById('toolFilter');
+    const toolCards = document.querySelectorAll('.tool-card');
+    
+    filterInput.addEventListener('input', function() {
+        const filter = filterInput.value.toLowerCase();
+        toolCards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                card.style.display = '';
+                card.style.animation = 'fadeIn 0.4s ease forwards';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

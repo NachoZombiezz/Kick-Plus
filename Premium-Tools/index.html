@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Tools - Kick Plus</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .coming-soon {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .coming-soon-icon {
+            font-size: 5rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.8;
+        }
+        
+        .coming-soon h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent-color), #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .coming-soon p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .features-preview {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            border: 2px solid var(--border-color);
+        }
+        
+        .features-preview h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .features-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--accent-color);
+            color: var(--text-secondary);
+        }
+        
+        .features-list li::before {
+            content: '⚡ ';
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../index.html" class="top-bar-link">Home</a>
+            <a href="../Free-Tools/index.html" class="top-bar-link">Free Tools</a>
+            <a href="index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <div class="hero-section fade-in">
+                    <h1>Premium Tools</h1>
+                    <p>Advanced features and exclusive tools designed for professional streamers.</p>
+                </div>
+                
+                <div class="coming-soon fade-in">
+                    <div class="coming-soon-icon">🚀</div>
+                    <h2>Coming Soon</h2>
+                    <p>We're working hard to bring you powerful premium features that will take your streaming experience to the next level.</p>
+                    
+                    <div class="features-preview">
+                        <h3>What to Expect</h3>
+                        <ul class="features-list">
+                            <li>Advanced analytics and viewer insights</li>
+                            <li>Custom overlay templates and designs</li>
+                            <li>Multi-platform stream integration</li>
+                            <li>AI-powered chat moderation tools</li>
+                            <li>Priority support and early access to new features</li>
+                            <li>Exclusive widgets and stream alerts</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="../Free-Tools/index.html" style="margin-top: var(--spacing-lg); display: inline-block;">
+                        <button class="category-btn">Explore Free Tools Meanwhile</button>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

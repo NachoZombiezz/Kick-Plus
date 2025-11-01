@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Overlay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .custom-text {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        #countdown {
+            font-size: 80px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .finished {
+            animation: flash 1s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div id="topText" class="custom-text"></div>
+        <div id="countdown">00:05:00</div>
+        <div id="bottomText" class="custom-text"></div>
+    </div>
+
+    <script>
+        let timeRemaining = 0;
+        let timerInterval = null;
+        let isRunning = false;
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const hours = parseInt(urlParams.get('h') || '0');
+        const minutes = parseInt(urlParams.get('m') || '5');
+        const seconds = parseInt(urlParams.get('s') || '0');
+        const textColor = urlParams.get('tc') || '#ffffff';
+        const bgColor = urlParams.get('bg') || 'transparent';
+        const fontSize = parseInt(urlParams.get('fs') || '80');
+        const topTextContent = decodeURIComponent(urlParams.get('tt') || '');
+        const bottomTextContent = decodeURIComponent(urlParams.get('bt') || '');
+        const autoStart = urlParams.get('auto') === '1';
+        const fontFamily = decodeURIComponent(urlParams.get('font') || 'Inter');
+
+        // Load Google Font if not Inter
+        if (fontFamily !== 'Inter') {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(/\s+/g, '+')}:wght@400;500;600;700;800&display=swap`;
+            document.head.appendChild(link);
+        }
+
+        // Apply customization
+        const countdownEl = document.getElementById('countdown');
+        const topTextEl = document.getElementById('topText');
+        const bottomTextEl = document.getElementById('bottomText');
+        
+        countdownEl.style.color = '#' + textColor.replace('#', '');
+        countdownEl.style.fontSize = fontSize + 'px';
+        countdownEl.style.fontFamily = `'${fontFamily}', sans-serif`;
+        topTextEl.style.color = '#' + textColor.replace('#', '');
+        topTextEl.style.fontFamily = `'${fontFamily}', sans-serif`;
+        bottomTextEl.style.color = '#' + textColor.replace('#', '');
+        bottomTextEl.style.fontFamily = `'${fontFamily}', sans-serif`;
+        topTextEl.textContent = topTextContent;
+        bottomTextEl.textContent = bottomTextContent;
+        document.body.style.backgroundColor = bgColor === 'transparent' ? 'transparent' : '#' + bgColor.replace('#', '');
+
+        // Initialize timer
+        timeRemaining = (hours * 3600) + (minutes * 60) + seconds;
+        updateDisplay();
+
+        // Auto start if parameter is set
+        if (autoStart) {
+            startTimer();
+        }
+
+        // Listen for messages from parent window
+        window.addEventListener('message', (event) => {
+            const { action, time } = event.data;
+            
+            if (action === 'start') {
+                if (time !== undefined) {
+                    timeRemaining = time;
+                }
+                startTimer();
+            } else if (action === 'pause') {
+                pauseTimer();
+            } else if (action === 'reset') {
+                resetTimer(time);
+            } else if (action === 'update') {
+                timeRemaining = time;
+                updateDisplay();
+            }
+        });
+
+        function startTimer() {
+            if (isRunning) return;
+            isRunning = true;
+            
+            timerInterval = setInterval(() => {
+                if (timeRemaining > 0) {
+                    timeRemaining--;
+                    updateDisplay();
+                } else {
+                    finishTimer();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer(time) {
+            pauseTimer();
+            timeRemaining = time;
+            updateDisplay();
+            countdownEl.classList.remove('finished');
+        }
+
+        function finishTimer() {
+            pauseTimer();
+            countdownEl.textContent = 'STARTING NOW!';
+            countdownEl.classList.add('finished');
+        }
+
+        function updateDisplay() {
+            const hrs = Math.floor(timeRemaining / 3600);
+            const mins = Math.floor((timeRemaining % 3600) / 60);
+            const secs = timeRemaining % 60;
+            
+            countdownEl.textContent = 
+                String(hrs).padStart(2, '0') + ':' + 
+                String(mins).padStart(2, '0') + ':' + 
+                String(secs).padStart(2, '0');
+        }
+    </script>
+</body>
+</html>

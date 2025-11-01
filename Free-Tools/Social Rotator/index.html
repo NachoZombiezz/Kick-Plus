@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Rotator - Kick Plus</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="rotator.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts Picker (Fontsource API + custom preview) -->
+    <script src="https://cdn.jsdelivr.net/npm/@fontsource/google-fonts-api@latest/dist/fontsource-google-fonts-api.min.js"></script>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../../index.html" class="top-bar-link">Home</a>
+            <a href="../../Free-Tools/index.html" class="top-bar-link">Free Tools</a>
+            <a href="../../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <a href="../../Free-Tools/index.html" class="back-btn">← Back</a>
+                <div class="rotator-header fade-in">
+                    <img src="../../assets/Tool Icons/SocialRotator.png" alt="Rotator Logo" class="tool-icon rotator-logo">
+                </div>
+                <form id="overlayForm" class="fade-in">
+                    <div class="color-row">
+                        <label for="overlayColor">Text Color:</label>
+                        <input type="color" id="overlayColor" value="#ffffff">
+                        <label for="overlayBg">Background Color:</label>
+                        <input type="color" id="overlayBg" value="#222222">
+                        <label for="bgEnabled" style="margin-left:16px;">
+                            <input type="checkbox" id="bgEnabled" checked>
+                            Show Background
+                        </label>
+                    </div>
+                    <div class="font-row" style="position:relative;">
+                        <label for="fontSearch">Font Style:</label>
+                        <input type="text" id="fontSearch" placeholder="Search fonts..." autocomplete="off">
+                        <div id="fontDropdown"></div>
+                    </div>
+                    <div class="timing-row">
+                        <label for="rotationTiming" style="font-weight:600;">Rotation Timing (ms):</label>
+                        <input type="range" id="rotationTimingSlider" min="500" max="25000" step="100" value="3000">
+                        <input type="number" id="rotationTiming" min="500" max="25000" step="100" value="3000" style="width:100px;">
+                    </div>
+                    <div id="handles" class="handles">
+                        <div class="handle-row">
+                            <select class="platform">
+                                <option value="Bluesky">Bluesky</option>
+                                <option value="Discord">Discord</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Kick">Kick</option>
+                                <option value="OnlyFans">OnlyFans</option>
+                                <option value="Rumble">Rumble</option>
+                                <option value="Snapchat">Snapchat</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Twitch">Twitch</option>
+                                <option value="X">X</option>
+                                <option value="YouTube">YouTube</option>
+                            </select>
+                            <input type="text" class="handle" placeholder="@yourhandle">
+                            <input type="color" class="icon-color" value="#ffffff" title="Icon Color">
+                            <div class="icon-color-dropdown">
+                                <select class="icon-color-mode">
+                                    <option value="brand" selected>Brand Color</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <button type="button" class="remove-handle" onclick="removeHandle(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-handle" onclick="addHandle()">Add Another</button>
+                </form>
+                <h3>Overlay Preview:</h3>
+                <iframe id="overlayPreview" src="rotator-overlay.html" style="width:100%;max-width:600px;height:auto;border:none;background:transparent;"></iframe>
+                <div id="browser-url-row">
+                    <label for="overlayUrl">Browser Source URL for OBS:</label>
+                    <input type="text" id="overlayUrl" value="rotator-overlay.html" readonly>
+                    <button type="button" class="copy-btn" onclick="copyOverlayUrl()">Copy</button>
+                </div>
+                <script src="rotator.js"></script>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

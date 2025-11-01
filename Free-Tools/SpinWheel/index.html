@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin Wheel - Kick Plus</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="spin-wheel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../../index.html" class="top-bar-link">Home</a>
+            <a href="../../Free-Tools/index.html" class="top-bar-link">Free Tools</a>
+            <a href="../../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <a href="../../Free-Tools/index.html" class="back-btn">← Back</a>
+                <div class="wheel-header fade-in">
+                    <img src="../../assets/Tool Icons/SpinWheel.png" alt="Spin Wheel" class="wheel-logo">
+                </div>
+
+                <!-- Options Input Section -->
+                <div class="options-section fade-in">
+                    <h3>Wheel Options</h3>
+                    <div class="options-input-container">
+                        <input type="text" id="optionInput" placeholder="Enter an option..." maxlength="50">
+                        <button type="button" class="add-option-btn" onclick="addOption()">Add Option</button>
+                    </div>
+                    <div id="optionsList" class="options-list">
+                        <!-- Options will be added here dynamically -->
+                    </div>
+                    <div class="options-actions">
+                        <button type="button" class="clear-btn" onclick="clearOptions()">Clear All</button>
+                        <button type="button" class="example-btn" onclick="loadExampleOptions()">Load Example</button>
+                    </div>
+                </div>
+
+                <!-- Wheel Section -->
+                <div class="wheel-section fade-in">
+                    <div class="wheel-container">
+                        <canvas id="wheelCanvas" width="500" height="500"></canvas>
+                        <div class="wheel-pointer"></div>
+                    </div>
+                    <button type="button" id="spinBtn" class="spin-btn" onclick="spinWheel()">SPIN THE WHEEL!</button>
+                    <div id="resultDisplay" class="result-display">
+                        <div id="resultText"></div>
+                        <button id="removeWinnerBtn" class="remove-winner-btn" onclick="removeWinner()" style="display: none;">Remove Winner</button>
+                    </div>
+                </div>
+
+                <script src="spin-wheel.js"></script>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

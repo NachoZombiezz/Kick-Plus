@@ -1,0 +1,836 @@
+/* Streamer and Viewer Card Styles */
+.streamer-card-module, .viewer-card-module {
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    max-width: 500px;
+    width: fit-content;
+    font-size: .95em;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--primary-color);
+    transition: all var(--transition-normal);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(99, 102, 241, 0.2);
+    margin-bottom: var(--spacing-lg);
+}
+.streamer-card-module .card-top, .viewer-card-module .card-top {
+    height: 70px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.streamer-card-module .card-title, .viewer-card-module .card-title {
+    color: white;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+.card-bottom {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    justify-content: center;
+    text-align: left;
+    background: var(--card-bg);
+    border-radius: 0;
+    gap: var(--spacing-sm);
+}
+.streamer-card-module:hover, .viewer-card-module:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 102, 241, 0.4);
+    border-color: var(--primary-hover);
+}
+.card-pfp {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+}
+.card-pfp:hover {
+    transform: scale(1.05);
+    border-color: var(--secondary-color);
+}
+.card-pfp img {
+    height: 70px;
+    width: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+
+.lookup-header {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+    margin: 0 0 var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--border-color);
+}
+
+.lookup-logo {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .lookup-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .lookup-logo {
+        width: 100px;
+    }
+}
+/* Streamer specific styles */
+.streamer-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2em;
+    margin-bottom: .5em;
+}
+
+.name-section {
+    display: flex;
+    gap: .25em;
+}
+
+
+/* Username styling */
+#streamer-name, #viewer-name {
+    color: var(--text-primary);
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 1.1em;
+}
+
+/* Verified badge styling */
+.name-section img {
+    height: 1em;
+    margin: auto 0;
+}
+
+/* Viewer specific styles */
+.viewer-name-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2em;
+    margin-bottom: .5em;
+}
+
+/* Before content styles */
+#streamer-follower-count::before {
+    content: 'Followers: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+#streamer-creation-date::before {
+    content: 'Created: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#streamer-age::before {
+    content: 'Age: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#streamer-id::before {
+    content: 'ID: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#streamer-user-id::before {
+    content: 'User ID: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#streamer-chatroom-id::before {
+    content: 'Chatroom ID: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#streamer-live-status {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    display: inline-block;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+}
+
+/* Social links */
+.streamer-socials {
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+    margin-top: 0.3em;
+}
+
+.streamer-socials img {
+    height: 1.5em;
+    width: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.streamer-socials a:hover img {
+    transform: scale(1.2);
+}
+
+#viewer-follows::before {
+    content: 'Follows: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#viewer-creation-date::before {
+    content: 'Followed: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#viewer-age::before {
+    content: 'Follow Age: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#subscriber::before {
+    content: 'Subscribed: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#sub-length::before {
+    content: 'Sub Length: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#gifted-subs::before {
+    content: 'Gifted Subs: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#banned::before {
+    content: 'User Banned: ';
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Badges */
+.viewer-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    margin-top: 1em;
+    flex-wrap: wrap;
+}
+
+.viewer-badges img {
+    height: 1.5em;
+    width: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.viewer-badges img:hover {
+    transform: scale(1.1);
+}
+
+.badges-text {
+    margin-right: .25em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Look Up Module (Results Section) */
+.look-up-module {
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    max-width: 90vw;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-xl);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--border-color);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Container for streamer and viewer cards */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    flex-wrap: nowrap;
+}
+
+/* Results buttons container for horizontal layout */
+.results-buttons-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin: 0 auto var(--spacing-lg) auto;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+/* Show buttons container when results are displayed */
+.results-container.show .results-buttons-container {
+    display: flex;
+    opacity: 1;
+}
+
+/* Results close button */
+.results-close-btn {
+    position: relative;
+    padding: 0.625rem 1.75rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-normal);
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+    width: fit-content;
+}
+
+.results-close-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.results-close-btn:active {
+    transform: scale(0.95);
+}
+
+.look-up-module.show {
+    display: flex;
+    opacity: 1;
+}
+
+.module-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.separator-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+}
+
+/* Notice Section */
+.notice-section {
+    max-width: 800px;
+    margin: var(--spacing-lg) auto;
+    padding: 0 var(--spacing-md);
+}
+
+.notice-content {
+    background: var(--card-bg);
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow-sm);
+}
+
+.notice-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.notice-content strong {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Input Section */
+.input-section {
+    max-width: 800px;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-xl);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--border-color);
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow-md);
+}
+
+.input-row {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.input-group {
+    flex: 1;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: var(--bg-secondary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.search-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.search-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), 0 0 25px rgba(99, 102, 241, 0.5);
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-dark));
+}
+
+.search-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 480px) {
+    .streamer-card-module, .viewer-card-module {
+        min-width: 280px;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .module-separator {
+        margin: var(--spacing-sm) 0;
+    }
+    
+    .input-section {
+        padding: var(--spacing-md);
+    }
+    
+    .card-bottom {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Responsive design - Tablet and Mobile */
+@media (max-width: 768px) {
+    .look-up-module {
+        width: fit-content;
+        max-width: calc(100vw - 2rem);
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md);
+        margin: var(--spacing-md) auto;
+    }
+    
+    /* Rotate connection image when cards stack vertically */
+    .look-up-module .separator-image {
+        transform: rotate(90deg);
+        width: 35px;
+        height: 35px;
+    }
+    
+    .results-buttons-container {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .results-close-btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .input-section {
+        margin: var(--spacing-md);
+        padding: var(--spacing-md);
+        max-width: 600px;
+    }
+    
+    .input-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Live Stream Section Styles */
+.live-stream-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+    font-size: 1rem;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--secondary-color);
+    transition: all var(--transition-normal);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(16, 185, 129, 0.2);
+    margin: var(--spacing-xl) auto 0 auto;
+    align-self: center;
+}
+
+.live-stream-section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(16, 185, 129, 0.4);
+    border-color: var(--secondary-hover);
+}
+
+.live-stream-section .card-top {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-hover));
+}
+
+.live-stream-section .card-title {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.stream-info {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stream-info h4 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.4;
+}
+
+.stream-details {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    color: var(--text-secondary);
+}
+
+.stream-details > div {
+    background: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+}
+
+.stream-embed-container {
+    position: relative;
+    width: 100%;
+    height: 315px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stream-embed-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.stream-actions {
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.watch-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-hover));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-normal);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.watch-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.watch-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.watch-btn:hover {
+    background: linear-gradient(135deg, var(--secondary-hover), #047857);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), 0 0 25px rgba(16, 185, 129, 0.5);
+}
+
+.watch-btn:active {
+    transform: translateY(-1px);
+}
+
+.watch-btn:focus {
+    outline: none;
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+.watch-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    background: var(--bg-tertiary);
+    box-shadow: none;
+}
+
+.watch-icon {
+    font-size: 1.2em;
+    transition: transform var(--transition-normal);
+}
+
+.watch-btn:hover .watch-icon {
+    transform: translateX(3px) scale(1.1);
+}
+
+/* Developer Info Toggle Button */
+.dev-info-toggle-btn {
+    padding: 0.625rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-top: var(--spacing-sm);
+}
+
+.dev-info-toggle-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+#dev-info {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+#dev-info > div {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments for live stream */
+@media (max-width: 768px) {
+    .look-up-module {
+        padding: var(--spacing-md);
+        gap: var(--spacing-lg);
+    }
+    
+    .cards-container {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    
+    .live-stream-section {
+        max-width: 100%;
+        margin: var(--spacing-md) auto 0 auto;
+    }
+    
+    .stream-embed-container {
+        height: 250px;
+    }
+    
+    .stream-details {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .stream-details > div {
+        text-align: center;
+    }
+    
+    .watch-btn {
+        padding: 0.85rem 1.75rem;
+        font-size: 1em;
+        gap: 0.5rem;
+    }
+    
+    .watch-icon {
+        font-size: 1.1em;
+    }
+}

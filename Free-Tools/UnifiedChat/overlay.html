@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Chat Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: transparent;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .chat-overlay {
+            width: 400px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-message {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            animation: slideIn 0.3s ease, fadeOut 0.5s ease 29.5s forwards;
+            color: white;
+        }
+
+        .chat-message.twitch {
+            border-left-color: #9146ff;
+        }
+
+        .chat-message.kick {
+            border-left-color: #53fc18;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .platform-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .platform-badge.twitch {
+            background: #9146ff;
+            color: white;
+        }
+
+        .platform-badge.kick {
+            background: #53fc18;
+            color: #000;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 1em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .message-content {
+            color: #fff;
+            line-height: 1.4;
+            font-size: 0.95em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .chat-emote {
+            height: 28px;
+            width: auto;
+            vertical-align: middle;
+            display: inline-block;
+            margin: 0 2px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.6));
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-overlay" id="chatOverlay"></div>
+
+    <script>
+        class ChatOverlay {
+            constructor() {
+                this.chatOverlay = document.getElementById('chatOverlay');
+                this.maxMessages = 10;
+                this.messageTimeout = 30000; // 30 seconds
+                
+                this.setupBroadcastChannel();
+            }
+
+            setupBroadcastChannel() {
+                if ('BroadcastChannel' in window) {
+                    const channel = new BroadcastChannel('unified-chat');
+                    channel.onmessage = (event) => {
+                        const { platform, username, message, formattedMessage } = event.data;
+                        // Use formatted message if available (contains emotes)
+                        this.addMessage(platform, username, formattedMessage || message);
+                    };
+                }
+            }
+
+            addMessage(platform, username, message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `chat-message ${platform}`;
+
+                messageElement.innerHTML = `
+                    <div class="message-header">
+                        <span class="platform-badge ${platform}">${platform}</span>
+                        <span class="username">${this.escapeHtml(username)}</span>
+                    </div>
+                    <div class="message-content">${message}</div>
+                `;
+
+                this.chatOverlay.appendChild(messageElement);
+
+                // Remove message after timeout
+                setTimeout(() => {
+                    if (messageElement.parentNode) {
+                        messageElement.remove();
+                    }
+                }, this.messageTimeout);
+
+                // Limit number of messages
+                while (this.chatOverlay.children.length > this.maxMessages) {
+                    this.chatOverlay.removeChild(this.chatOverlay.firstChild);
+                }
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // Initialize overlay
+        new ChatOverlay();
+    </script>
+</body>
+</html>

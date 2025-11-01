@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hype Bar Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: transparent;
+            overflow: hidden;
+            width: 1920px;
+            height: 150px;
+        }
+
+        .hype-bar {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, 
+                rgba(83, 252, 24, 0.95) 0%, 
+                rgba(83, 252, 24, 0.85) 50%, 
+                rgba(83, 252, 24, 0.95) 100%);
+            box-shadow: 0 4px 20px rgba(83, 252, 24, 0.5);
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hype-bar.position-bottom {
+            bottom: 0;
+            transform: translateY(100%);
+        }
+
+        .hype-bar.position-top {
+            top: 0;
+            transform: translateY(-100%);
+        }
+
+        .hype-bar.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .hype-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .hype-icon {
+            font-size: 4rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .hype-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .hype-type {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hype-message {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hype-amount {
+            color: #fff;
+            font-weight: 800;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hype-bar" id="hype-bar">
+        <div class="shimmer"></div>
+        <div class="hype-content">
+            <div class="hype-icon" id="hype-icon">🎉</div>
+            <div class="hype-text">
+                <div class="hype-type" id="hype-type">Subscription</div>
+                <div class="hype-message" id="hype-message">
+                    <span id="username">Username</span> <span id="action">subscribed!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hypeBar = document.getElementById('hype-bar');
+        const hypeIcon = document.getElementById('hype-icon');
+        const hypeType = document.getElementById('hype-type');
+        const username = document.getElementById('username');
+        const action = document.getElementById('action');
+        let lastTimestamp = 0;
+        let hideTimeout = null;
+
+        // Load settings
+        const settings = JSON.parse(localStorage.getItem('hypeSettings') || '{}');
+        const position = settings.barPosition || 'top';
+        const duration = (settings.displayDuration || 5) * 1000;
+
+        hypeBar.classList.add(`position-${position}`);
+
+        function showHypeBar(event) {
+            // Clear any existing timeout
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
+
+            // Set content based on event type
+            switch(event.type) {
+                case 'sub':
+                    hypeIcon.textContent = '⭐';
+                    hypeType.textContent = 'New Subscriber!';
+                    username.textContent = event.username;
+                    if (event.months && event.months > 1) {
+                        action.textContent = `subscribed for ${event.months} months!`;
+                    } else {
+                        action.textContent = 'just subscribed!';
+                    }
+                    break;
+                case 'gift-sub':
+                    hypeIcon.textContent = '🎁';
+                    hypeType.textContent = 'Gift Subs!';
+                    username.textContent = event.username;
+                    action.textContent = `gifted ${event.amount} sub${event.amount > 1 ? 's' : ''}!`;
+                    break;
+                case 'gift':
+                    hypeIcon.textContent = '💎';
+                    hypeType.textContent = event.giftName || 'Kick Gift!';
+                    username.textContent = event.username;
+                    if (event.amount > 1) {
+                        action.textContent = `sent ${event.amount} gifts!`;
+                    } else {
+                        action.textContent = 'sent a gift!';
+                    }
+                    break;
+            }
+
+            // Show the bar
+            hypeBar.classList.add('active');
+
+            // Hide after duration
+            hideTimeout = setTimeout(() => {
+                hypeBar.classList.remove('active');
+            }, duration);
+        }
+
+        function checkForEvents() {
+            const eventData = localStorage.getItem('hypeEvent');
+            
+            if (eventData) {
+                const event = JSON.parse(eventData);
+                
+                // Check if this is a new event
+                if (event.timestamp && event.timestamp !== lastTimestamp) {
+                    lastTimestamp = event.timestamp;
+                    
+                    // Check if this event type is enabled
+                    const enabledMap = {
+                        'sub': settings.enableSubs !== false,
+                        'gift-sub': settings.enableGiftSubs !== false,
+                        'gift': settings.enableGifts !== false
+                    };
+                    
+                    if (enabledMap[event.type]) {
+                        showHypeBar(event);
+                    }
+                }
+            }
+        }
+
+        // Check for events every 500ms
+        setInterval(checkForEvents, 500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Chat - Kick Plus</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="unified-chat.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-logo">Kick Plus</div>
+        <nav class="top-bar-nav">
+            <a href="../../index.html" class="top-bar-link">Home</a>
+            <a href="../../Free-Tools/index.html" class="top-bar-link">Free Tools</a>
+            <a href="../../Premium-Tools/index.html" class="top-bar-link">Premium Tools</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="main-content">
+                <a href="../../Free-Tools/index.html" class="back-btn">← Back</a>
+                <div class="chat-header-section fade-in">
+                    <img src="../../assets/Tool Icons/UnifiedChat.png" alt="Unified Chat" class="chat-logo">
+                </div>
+                
+                <div class="notice-section fade-in">
+                    <div class="notice-content">
+                        <p><strong>Notice:</strong> This tool is still being fixed to show emotes with a bunch of customized options for changing how the overlay looks in OBS.</p>
+                    </div>
+                </div>
+
+                <div class="setup-section fade-in">
+                    <h3>Connection Settings</h3>
+                    <div class="channel-inputs">
+                        <div class="input-group">
+                            <label for="twitchChannel">Twitch Channel Name:</label>
+                            <input type="text" id="twitchChannel" placeholder="Enter Twitch username">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="kickChannel">Kick Channel Name:</label>
+                            <input type="text" id="kickChannel" placeholder="Enter Kick username">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="connectBtn" class="btn-primary">Connect to Chats</button>
+                        <button id="disconnectBtn" class="btn-secondary" disabled>Disconnect</button>
+                    </div>
+                </div>
+
+                <div class="status-section fade-in">
+                    <div class="status-item">
+                        <span class="status-label">Twitch:</span>
+                        <span id="twitchStatus" class="status-indicator disconnected">Disconnected</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Kick:</span>
+                        <span id="kickStatus" class="status-indicator disconnected">Disconnected</span>
+                    </div>
+                </div>
+
+                <div class="chat-container fade-in">
+                    <div class="chat-header-bar">
+                        <h2>Live Chat Messages</h2>
+                        <button id="clearChat" class="btn-small">Clear Chat</button>
+                    </div>
+                    <div id="chatMessages" class="chat-messages"></div>
+                </div>
+
+                <div class="overlay-section fade-in">
+                    <h3>OBS Browser Source</h3>
+                    <p>Copy this URL and add it as a Browser Source in OBS:</p>
+                    <div class="url-container">
+                        <input type="text" id="overlayUrl" readonly>
+                        <button id="copyUrl" class="btn-small">Copy URL</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-branding">Kick Plus</div>
+            <div class="footer-copyright">
+                &copy; 2025 <span class="footer-company">Streamscape LLC</span>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="unified-chat.js"></script>
+</body>
+</html>
